@@ -19,12 +19,12 @@ pipeline {
         }
         stage('Archive Artifact') {
             steps {
-                archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+                archiveArtifacts artifacts: 'jackson-json-java/target/*.jar', fingerprint: true
             }
         }
         stage('Deploy To EC2') {
             steps {
-                sshPublisher(publishers: [sshPublisherDesc(configName: 'ec2-instance', transfers: [sshTransfer(sourceFiles: 'target/*.jar', removePrefix: 'target', remoteDirectory:'/app')])])
+                sshPublisher(publishers: [sshPublisherDesc(configName: 'ec2-instance', transfers: [sshTransfer(sourceFiles: 'jackson-json-java/target/*.jar', removePrefix: 'jackson-json-java/target', remoteDirectory:'/html/app')])])
             }
         }
     }
