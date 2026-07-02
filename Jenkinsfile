@@ -10,12 +10,12 @@ pipeline {
             steps {
                 git branch: 'feature/branch', credentialsId: 'github', url: 'https://github.com/vasanthkumar13m/Java.git' 
             }
+        }
         stage('Build') {
             steps {
                 sh 'mvn clean package'
             }
-
-        }
+        }   
         stage('Archive Artifact') {
             steps {
                 archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
