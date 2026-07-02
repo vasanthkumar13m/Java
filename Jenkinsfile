@@ -8,7 +8,8 @@ pipeline {
     stages {
         stage('Checkout'){
             steps {
-                git branch: 'feature/branch', credentialsId: 'github', url: 'https://github.com/vasanthkumar13m/Java.git'        }
+                git branch: 'feature/branch', credentialsId: 'github', url: 'https://github.com/vasanthkumar13m/Java.git' 
+            }
         stage('Build') {
             steps {
                 sh 'mvn clean package'
