@@ -13,7 +13,9 @@ pipeline {
         }
         stage('Build') {
             steps {
-                sh 'mvn clean package'
+                dir('IPLProject') {
+                    sh 'mvn clean package'
+                }
             }
         }   
         stage('Archive Artifact') {
