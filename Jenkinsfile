@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                dir('IPLProject') {
+                dir('java-list-map') {
                     sh 'mvn clean package'
                 }
             }
