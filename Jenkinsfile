@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                dir('IPLProject') {
+                dir('jackson-json-java') {
                     sh 'mvn clean package'
                 }
             }
