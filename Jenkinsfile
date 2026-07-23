@@ -25,7 +25,7 @@ pipeline {
 
         stage('SonarQube Analysis') {
             steps {
-                dir('jackson-jasper') {
+                dir('java-jasper') {
                     withSonarQubeEnv('Sonarqube') {
                         withCredentials([string(credentialsId: 'SonarQube', variable: 'SONAR_TOKEN')]) {
                             sh '''
@@ -40,7 +40,7 @@ pipeline {
 
         stage('Archive Artifact') {
             steps {
-                archiveArtifacts artifacts: 'jackson-jasper/target/*.jar', fingerprint: true
+                archiveArtifacts artifacts: 'java-jasper/target/*.jar', fingerprint: true
             }
         }
 
@@ -52,8 +52,8 @@ pipeline {
                             configName: 'ec2-instance',
                             transfers: [
                                 sshTransfer(
-                                    sourceFiles: 'jackson-jasper/target/*.jar',
-                                    removePrefix: 'jackson-jasper/target',
+                                    sourceFiles: 'java-jasper/target/*.jar',
+                                    removePrefix: 'java-jasper/target',
                                     remoteDirectory: '/app'
                                 )
                             ]
