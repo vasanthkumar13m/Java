@@ -17,7 +17,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                dir('java-jasper') {
+                dir('java-list-map') {
                     sh 'mvn clean package'
                 }
             }
@@ -25,7 +25,7 @@ pipeline {
 
         stage('SonarQube Analysis') {
             steps {
-                dir('java-jasper') {
+                dir('java-list-map') {
                     withSonarQubeEnv('Sonarqube') {
                         withCredentials([string(credentialsId: 'SonarQube', variable: 'SONAR_TOKEN')]) {
                             sh '''
@@ -40,7 +40,7 @@ pipeline {
 
         stage('Archive Artifact') {
             steps {
-                archiveArtifacts artifacts: 'java-jasper/target/*.jar', fingerprint: true
+                archiveArtifacts artifacts: 'java-list-map/target/*.jar', fingerprint: true
             }
         }
 
@@ -52,8 +52,8 @@ pipeline {
                             configName: 'ec2-instance',
                             transfers: [
                                 sshTransfer(
-                                    sourceFiles: 'java-jasper/target/*.jar',
-                                    removePrefix: 'java-jasper/target',
+                                    sourceFiles: 'java-list-map/target/*.jar',
+                                    removePrefix: 'java-list-map/target',
                                     remoteDirectory: '/app'
                                 )
                             ]
