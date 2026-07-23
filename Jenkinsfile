@@ -11,7 +11,7 @@ pipeline {
             steps {
                 git branch: 'feature/branch',
                     credentialsId: 'github',
-                    url: 'https://github.com/vasanthkumar13m/spring-petclinic.git'
+                    url: 'https://github.com/vasanthkumar13m/Java.git'
             }
         }
 
