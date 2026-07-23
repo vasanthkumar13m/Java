@@ -17,7 +17,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                dir('jackson-jasper') {
+                dir('java-jasper') {
                     sh 'mvn clean package'
                 }
             }
